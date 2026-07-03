@@ -14,8 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const isDesktop = window.innerWidth > 820;
+    const isMobileBottomNav = window.innerWidth <= 820;
     const isOpen = navPanel.classList.contains("is-open");
-    navPanel.setAttribute("aria-hidden", String(!isDesktop && !isOpen));
+    navPanel.setAttribute("aria-hidden", String(!isDesktop && !isOpen && !isMobileBottomNav));
   };
 
   const closeMenu = () => {
@@ -42,6 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
       navPanel.classList.toggle("is-open");
       body.classList.toggle("menu-open");
       syncNavAccessibility();
+
+      if (!isOpen) {
+        const firstNavLink = navPanel.querySelector(".nav-link");
+        window.setTimeout(() => firstNavLink?.focus(), 140);
+      }
     });
   }
 
