@@ -1,241 +1,202 @@
-/**
- * AIK PORTFOLIO — BRITTANY CHIANG CLONE ENGINE
- */
-
-const siteData = {
-  settings: {
-    siteName: "Asif Imran Khan",
-    fullName: "Asif Imran Khan",
-    role: "Front-End Developer",
-    company: "AIK Studio",
-    email: "asifimrank7@gmail.com",
-    year: new Date().getFullYear(),
-  },
-  about: `
-    <p class="mb-4">
-      My journey didn't start behind a screen, but at the bedside. As a <span class="text-slate-200">Registered Nurse</span>, I learned to navigate high-pressure environments where precision and empathy are everything. In 2025, I decided to channel that same dedication into building digital solutions.
-    </p>
-    <p class="mb-4">
-      Today, I leverage my unique background in healthcare to build user-centric applications using <span class="text-teal-300">React</span>, <span class="text-teal-300">JavaScript</span>, and <span class="text-teal-300">PHP</span>. I don't just write code; I solve problems with the same care and attention to detail I used when lives were on the line.
-    </p>
-    <p>
-      I’m a frontend-leaning developer with a solid understanding of servers, HTTPS protocols, and a growing passion for backend architecture. Currently, I'm focused on crafting accessible and robust digital experiences at <a href="#" class="font-medium text-slate-200 hover:text-teal-300">AIK Studio</a>.
-    </p>
-  `,
-  experience: [
-    {
-      period: "2024 — PRESENT",
-      role: "Freelancer",
-      company: "AIK Studio",
-      companyUrl: "#",
-      desc: "Working as a freelancer at AIK Studio, specializing in building responsive and accessible front-end experiences.",
-      tags: ["Front-end Development", "Freelancing", "UI/UX"]
-    },
-    {
-      period: "01/2023 — PRESENT",
-      role: "Medical Biller and Coder",
-      company: "SAGILITY INDIA PRIVATE LIMITED",
-      companyUrl: "#",
-      desc: "Assigning standardized codes for diagnoses and procedures. Preparing and submitting insurance claims while ensuring compliance with healthcare regulations. Maintaining accurate patient records and communicating with insurers to resolve claims.",
-      tags: ["Medical Coding", "Healthcare Admin", "Compliance"]
-    },
-    {
-      period: "10/2022 — 01/2023",
-      role: "ER Nurse",
-      company: "NEW JANAPRIYA SUPER SPECIALITY HOSPITAL",
-      companyUrl: "#",
-      desc: "Performed rapid assessments and prioritized patient conditions. Conducted triage based on urgency for care. Administered medications, performed procedures, and collaborated with healthcare teams for treatment plans.",
-      tags: ["Nursing", "Critical Care", "Triage"]
+document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navPanel = document.querySelector(".nav-panel");
+  const siteHeader = document.querySelector(".site-header");
+  const navLinks = document.querySelectorAll(".nav-link");
+  const sections = document.querySelectorAll("main section[id]");
+  const revealItems = document.querySelectorAll(".reveal");
+  const contactForm = document.getElementById("contact-form");
+  const formStatus = document.getElementById("form-status");
+  const syncNavAccessibility = () => {
+    if (!navPanel) {
+      return;
     }
-  ],
-  projects: [
-    {
-      title: "The Aspire Hotel",
-      desc: "A luxurious hospitality platform for The Aspire Hotel in Guwahati. Features elegantly appointed room galleries, integrated booking workflows, and automated service management for a premium guest experience.",
-      image: "https://aik.idexa.app/projects/hotel/assets/images/lobby_gallery.png",
-      url: "https://aik.idexa.app/projects/hotel/index.php#home",
-      tags: ["PHP", "Hospitality Tech", "UX Design"]
-    },
-    {
-      title: "Aaron Holmes Residential",
-      desc: "A luxury real estate platform for London & UK property experts. Features dynamic property listings, advanced search filters, and comprehensive market intelligence reports.",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80",
-      url: "https://aaron-holmes.com/design/index.php?page=home",
-      tags: ["PHP", "UI/UX", "Real Estate Tech"]
-    },
-    {
-      title: "Luminary AI",
-      desc: "An AI-powered content generation platform. Built with a focus on accessibility and seamless user experience.",
-      image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1200&q=80",
-      url: "#",
-      tags: ["React", "OpenAI API", "Node.js"]
+
+    const isDesktop = window.innerWidth > 820;
+    const isOpen = navPanel.classList.contains("is-open");
+    navPanel.setAttribute("aria-hidden", String(!isDesktop && !isOpen));
+  };
+
+  const closeMenu = () => {
+    if (!menuToggle || !navPanel) {
+      return;
     }
-  ]
-};
 
-const App = {
-  init: function() {
-    this.initPreloader();
-    this.render();
-    this.initSpotlight();
-    this.initScrollSpy();
-  },
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation menu");
+    navPanel.classList.remove("is-open");
+    body.classList.remove("menu-open");
+    syncNavAccessibility();
+  };
 
-  initPreloader: function() {
-    const preloader = document.getElementById("preloader");
-    const bar = document.getElementById("preloader-bar");
-    if (!preloader || !bar) return;
+  if (menuToggle && navPanel) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
 
-    // Simulate progress
-    setTimeout(() => {
-      bar.style.width = "100%";
-      setTimeout(() => {
-        preloader.style.opacity = "0";
-        setTimeout(() => {
-          preloader.style.display = "none";
-        }, 700);
-      }, 500);
-    }, 200);
-  },
-
-  render: function() {
-    this.renderAbout();
-    this.renderExperience();
-    this.renderProjects();
-  },
-
-  renderAbout: function() {
-    const el = document.getElementById("about-content");
-    if (el) el.innerHTML = siteData.about;
-  },
-
-  renderExperience: function() {
-    const el = document.getElementById("experience-list");
-    if (!el) return;
-    el.innerHTML = `<ol class="card-list">
-      ${siteData.experience.map(exp => `
-        <li class="mb-12">
-          <div class="card experience-card">
-            <header class="card-time" aria-label="${exp.period}">${exp.period}</header>
-            <div class="card-content">
-              <h3 class="font-medium leading-snug text-slate-200">
-                <div>
-                  <a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 group/link text-base" href="${exp.companyUrl}" rel="noreferrer" aria-label="${exp.role} at ${exp.company}">
-                    <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                    <span>${exp.role} · <span class="inline-block">${exp.company}</span></span>
-                  </a>
-                </div>
-              </h3>
-              <p class="mt-2 text-sm leading-normal">${exp.desc}</p>
-              <ul class="tags" aria-label="Technologies used">
-                ${exp.tags.map(tag => `<li class="tag">${tag}</li>`).join("")}
-              </ul>
-            </div>
-          </div>
-        </li>
-      `).join("")}
-    </ol>`;
-  },
-
-  renderProjects: function() {
-    const el = document.getElementById("projects-list");
-    if (!el) return;
-    el.innerHTML = `<ul class="card-list">
-      ${siteData.projects.map(project => `
-        <li class="mb-12">
-          <div class="card project-card">
-            <div class="project-img">
-              <img src="${project.image}" alt="${project.title}" loading="lazy">
-            </div>
-            <div class="project-content">
-              <h3 class="font-medium leading-snug text-slate-200">
-                <div>
-                  <a class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 group/link text-base" href="${project.url}" rel="noreferrer" aria-label="${project.title}">
-                    <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                    <span>${project.title}</span>
-                  </a>
-                </div>
-              </h3>
-              <p class="mt-2 text-sm leading-normal">${project.desc}</p>
-              <ul class="tags" aria-label="Technologies used">
-                ${project.tags.map(tag => `<li class="tag">${tag}</li>`).join("")}
-              </ul>
-            </div>
-          </div>
-        </li>
-      `).join("")}
-    </ul>`;
-  },
-
-  initSpotlight: function() {
-    const spotlight = document.getElementById("spotlight");
-    if (!spotlight) return;
-
-    window.addEventListener("mousemove", (e) => {
-      const { clientX, clientY } = e;
-      // Using clientX/Y for fixed positioning
-      spotlight.style.setProperty("--x", `${clientX}px`);
-      spotlight.style.setProperty("--y", `${clientY}px`);
-    }, { passive: true });
-  },
-
-  initScrollSpy: function() {
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll(".nav a");
-
-    const onScroll = () => {
-      let currentSection = "about";
-      const scrollPosition = window.scrollY + 200; // Offset for better detection
-
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollPosition >= sectionTop) {
-          currentSection = section.getAttribute("id");
-        }
-      });
-
-      this.updateNav(currentSection);
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // Initial check
-
-    // Manual smooth scroll and instant feedback
-    navLinks.forEach(link => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const href = link.getAttribute("href");
-        const targetId = href.substring(1);
-        const targetElement = document.getElementById(targetId);
-
-        if (targetElement) {
-          // Calculate offset (match scroll-mt-24 from CSS)
-          const offset = 100; 
-          const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
-
-          window.scrollTo({
-            top: targetId === "about" ? 0 : targetPosition,
-            behavior: "smooth"
-          });
-
-          // Force highlight immediately
-          this.updateNav(targetId);
-        }
-      });
-    });
-  },
-
-  updateNav: function(id) {
-    const navLinks = document.querySelectorAll(".nav a");
-    navLinks.forEach(link => {
-      const href = link.getAttribute("href").substring(1);
-      if (href === id) {
-        link.classList.add("active");
-      } else {
-        link.classList.remove("active");
-      }
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Open navigation menu" : "Close navigation menu"
+      );
+      navPanel.classList.toggle("is-open");
+      body.classList.toggle("menu-open");
+      syncNavAccessibility();
     });
   }
-};
 
-document.addEventListener("DOMContentLoaded", () => App.init());
+  syncNavAccessibility();
+
+  document.addEventListener("click", (event) => {
+    if (
+      window.innerWidth <= 820 &&
+      menuToggle &&
+      navPanel &&
+      navPanel.classList.contains("is-open") &&
+      !navPanel.contains(event.target) &&
+      !menuToggle.contains(event.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navPanel?.classList.contains("is-open")) {
+      closeMenu();
+      menuToggle?.focus();
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 820) {
+        closeMenu();
+      }
+    });
+  });
+
+  const updateActiveLink = () => {
+    const headerOffset = siteHeader ? siteHeader.offsetHeight + 48 : 140;
+    const scrollPosition = window.scrollY + headerOffset;
+    let currentId = "home";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        currentId = section.id;
+      }
+    });
+
+    navLinks.forEach((link) => {
+      const isActive = link.getAttribute("href") === `#${currentId}`;
+      link.classList.toggle("active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  updateActiveLink();
+  window.addEventListener("scroll", updateActiveLink, { passive: true });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 820) {
+      closeMenu();
+    }
+
+    syncNavAccessibility();
+  });
+
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add("visible"));
+  }
+
+  const setError = (field, message) => {
+    const formGroup = field.closest(".form-group");
+    const errorMessage = formGroup.querySelector(".error-message");
+
+    formGroup.classList.add("error");
+    errorMessage.textContent = message;
+  };
+
+  const clearError = (field) => {
+    const formGroup = field.closest(".form-group");
+    const errorMessage = formGroup.querySelector(".error-message");
+
+    formGroup.classList.remove("error");
+    errorMessage.textContent = "";
+  };
+
+  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+  if (contactForm && formStatus) {
+    const fields = [...contactForm.querySelectorAll("input, textarea")];
+
+    fields.forEach((field) => {
+      field.addEventListener("input", () => clearError(field));
+    });
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const nameField = contactForm.querySelector("#name");
+      const emailField = contactForm.querySelector("#email");
+      const messageField = contactForm.querySelector("#message");
+      let hasError = false;
+
+      formStatus.textContent = "";
+      formStatus.className = "form-status";
+
+      if (!nameField.value.trim()) {
+        setError(nameField, "Please enter your name.");
+        hasError = true;
+      }
+
+      if (!emailField.value.trim()) {
+        setError(emailField, "Please enter your email address.");
+        hasError = true;
+      } else if (!isValidEmail(emailField.value.trim())) {
+        setError(emailField, "Please enter a valid email address.");
+        hasError = true;
+      }
+
+      if (!messageField.value.trim()) {
+        setError(messageField, "Please enter your message.");
+        hasError = true;
+      } else if (messageField.value.trim().length < 12) {
+        setError(messageField, "Please share a few more details about your project.");
+        hasError = true;
+      }
+
+      if (hasError) {
+        formStatus.textContent = "Please correct the highlighted fields and try again.";
+        formStatus.classList.add("error");
+        return;
+      }
+
+      fields.forEach((field) => clearError(field));
+      contactForm.reset();
+      formStatus.textContent = "Message sent successfully. Thanks for reaching out!";
+      formStatus.classList.add("success");
+    });
+  }
+});

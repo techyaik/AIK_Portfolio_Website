@@ -16,38 +16,35 @@
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-300 antialiased py-12 px-6">
+<body class="bg-slate-950 text-slate-300 antialiased py-6 px-4 sm:py-10 sm:px-6">
     <div class="max-w-4xl mx-auto">
         <!-- Header Actions -->
-        <div class="flex justify-between items-center mb-12 no-print">
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="group">
-                    <img src="assets/images/logo.png" alt="AIK Logo" class="h-16 w-auto transition group-hover:scale-105 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">
-                </a>
-                <a href="index.html" class="text-teal-300 hover:text-white transition flex items-center gap-2">
+        <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-10 sm:mb-12 no-print">
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="index.html" class="text-teal-300 hover:text-white transition flex items-center gap-2 font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                     </svg>
                     Back to Portfolio
                 </a>
             </div>
-            <button onclick="window.print()" class="bg-teal-300 text-slate-900 px-6 py-2 rounded-full font-bold hover:bg-white transition">
+            <button onclick="window.print()" class="w-full sm:w-auto bg-teal-300 text-slate-900 px-6 py-2 rounded-full font-bold hover:bg-white transition">
                 Download PDF
             </button>
         </div>
 
         <!-- Resume Content -->
-        <div class="bg-slate-900 p-12 rounded-2xl shadow-2xl border border-slate-800 content-box">
+        <div class="bg-slate-900 p-5 sm:p-8 md:p-12 rounded-2xl shadow-2xl border border-slate-800 content-box">
             <!-- Name and Title -->
-            <header class="mb-12 border-b border-slate-800 pb-8">
-                <h1 class="text-5xl font-bold text-white mb-2">Asif Imran Khan</h1>
-                <h2 class="text-2xl text-teal-300 accent-text">Front-End Developer</h2>
-                <div class="mt-6 flex flex-wrap gap-4 text-sm text-slate-400">
-                    <span class="flex items-center gap-1">
+            <header class="mb-10 sm:mb-12 border-b border-slate-800 pb-8">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 break-words">Asif Imran Khan</h1>
+                <h2 class="text-xl sm:text-2xl text-teal-300 accent-text">Front-End Developer</h2>
+                <div class="mt-6 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 text-sm text-slate-400">
+                    <span class="flex items-center gap-1 break-all">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        asifimrank7@gmail.com
+                        asif.imran.dev@gmail.com
                     </span>
                     <span class="flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,7 +137,7 @@
                         <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6 border-b border-slate-800 pb-2">Work Experience</h3>
                         
                         <div class="mb-10">
-                            <div class="flex justify-between items-start mb-2">
+                            <div class="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-start mb-2">
                                 <h4 class="text-lg font-bold text-white">Freelancer</h4>
                                 <span class="text-xs font-mono text-teal-300 accent-text bg-teal-300/10 px-2 py-1 rounded">2024 — PRESENT</span>
                             </div>
@@ -149,7 +146,7 @@
                         </div>
 
                         <div class="mb-10">
-                            <div class="flex justify-between items-start mb-2">
+                            <div class="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-start mb-2">
                                 <h4 class="text-lg font-bold text-white">Medical Biller and Coder</h4>
                                 <span class="text-xs font-mono text-slate-500 bg-slate-800 px-2 py-1 rounded">01/2023 — PRESENT</span>
                             </div>
@@ -162,7 +159,7 @@
                         </div>
 
                         <div>
-                            <div class="flex justify-between items-start mb-2">
+                            <div class="flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-start mb-2">
                                 <h4 class="text-lg font-bold text-white">ER Nurse</h4>
                                 <span class="text-xs font-mono text-slate-500 bg-slate-800 px-2 py-1 rounded">10/2022 — 01/2023</span>
                             </div>

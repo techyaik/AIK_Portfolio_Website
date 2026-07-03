@@ -1,329 +1,393 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="AIK — Asif Imran Khan. Front-End Developer. Crafting accessible, pixel-perfect digital experiences."
-    />
-    <title>Asif Imran Khan | Front-End Developer</title>
-
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              slate: {
-                900: "#0f172a",
-                950: "#020617",
-              },
-              teal: {
-                300: "#5eead4",
-              },
-            },
-          },
-        },
-      };
-    </script>
-    <script src="js/script.js" defer></script>
-  </head>
-  <body
-    class="bg-slate-900 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="AIK — Asif Imran Khan. Front-End Developer. Crafting accessible, pixel-perfect digital experiences."
   >
-    <!-- Preloader -->
-    <div
-      id="preloader"
-      class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-slate-950 transition-opacity duration-700"
-    >
-      <div class="mb-8 overflow-hidden rounded-xl">
-        <img
-          src="assets/images/logo.png"
-          alt="AIK Logo"
-          class="h-24 w-24 animate-pulse"
-        />
-      </div>
-      <div class="h-1 w-48 overflow-hidden rounded-full bg-slate-800">
-        <div
-          id="preloader-bar"
-          class="h-full w-0 bg-teal-300 transition-all duration-500 ease-out"
-        ></div>
-      </div>
-    </div>
+  <title>Asif Imran Khan | Front-End Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  >
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <nav class="navbar" aria-label="Primary navigation">
+        <a class="logo" href="#home" aria-label="AIK home">AIK.</a>
 
-    <!-- Spotlight Background -->
-    <div
-      id="spotlight"
-      class="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"
-    ></div>
-
-    <div
-      class="mx-auto min-height-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0"
-    >
-      <div class="lg:flex lg:justify-between lg:gap-4">
-        <!-- Header / Left Column -->
-        <header
-          class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24 z-50"
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Open navigation menu"
         >
-          <div>
-            <div class="flex flex-col gap-6 mb-8">
-              <a
-                href="index.html"
-                onclick="
-                  if (
-                    location.pathname.endsWith('index.html') ||
-                    location.pathname === '/'
-                  ) {
-                    event.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }
-                "
-                class="inline-block group w-fit"
-              >
-                <img
-                  src="assets/images/logo.png"
-                  alt="AIK Logo"
-                  class="h-24 w-auto rounded-lg transition duration-500 group-hover:scale-105 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]"
-                />
-              </a>
-              <h1
-                class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl"
-              >
-                <a href="#">Asif Imran Khan</a>
-              </h1>
-            </div>
-            <h2
-              class="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl"
-            >
-              Front-End Developer at AIK Studio
-            </h2>
-            <p class="mt-4 max-w-xs leading-normal">
-              I build accessible, pixel-perfect digital experiences for the web.
-            </p>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
 
-            <nav class="nav hidden lg:block" aria-label="In-page jump links">
-              <ul class="mt-16 w-max">
-                <li>
-                  <a class="group flex items-center py-3 active" href="#about">
-                    <span
-                      class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"
-                    ></span>
-                    <span
-                      class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200"
-                      >About</span
-                    >
-                  </a>
-                </li>
-                <li>
-                  <a class="group flex items-center py-3" href="#experience">
-                    <span
-                      class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"
-                    ></span>
-                    <span
-                      class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200"
-                      >Experience</span
-                    >
-                  </a>
-                </li>
-                <li>
-                  <a class="group flex items-center py-3" href="#projects">
-                    <span
-                      class="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"
-                    ></span>
-                    <span
-                      class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200"
-                      >Projects</span
-                    >
-                  </a>
-                </li>
-              </ul>
-            </nav>
+        <div class="nav-panel" id="nav-menu" aria-hidden="true">
+          <ul class="nav-links">
+            <li><a class="nav-link active" href="#home">Home</a></li>
+            <li><a class="nav-link" href="#projects">Featured projects</a></li>
+            <li><a class="nav-link" href="#about">About me</a></li>
+            <li><a class="nav-link" href="#contact">Contact me</a></li>
+          </ul>
+
+          <a class="resume-btn" href="resume.html">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>View Resume</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero section" id="home">
+      <div class="hero-backdrop" aria-hidden="true">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="code-window">
+          <span class="code-line long"></span>
+          <span class="code-line medium"></span>
+          <span class="code-line short"></span>
+          <span class="code-line medium"></span>
+          <span class="code-line long"></span>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="hero-content reveal">
+          <p class="eyebrow">AIK Studio</p>
+          <h1>Hi, I am <span>Asif Imran Khan</span></h1>
+          <p class="hero-text">
+            A dedicated <span>Front-End Developer</span> building accessible, pixel-perfect digital
+            experiences for the web.
+          </p>
+
+          <div class="social-links" aria-label="Social media links">
+            <a href="https://github.com/techyaik" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="mailto:asif.imran.dev@gmail.com" aria-label="Email">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/asif-imran-khan-50b170218" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://x.com/asifikhandev?s=11" target="_blank" rel="noopener noreferrer" aria-label="Twitter or X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">Services</p>
+          <h2>What I <span>do.</span></h2>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card featured reveal">
+            <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+            <span class="service-number">01</span>
+            <h3>Front-End Development</h3>
+            <p>
+              I build responsive and accessible front-end experiences with a focus on clean
+              implementation, usability, and polished digital presentation.
+            </p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <span class="service-number">02</span>
+            <h3>Healthcare Operations</h3>
+            <p>
+              My background in nursing and medical coding brings precision, compliance awareness,
+              and structured problem-solving to every digital workflow I help build.
+            </p>
+          </article>
+
+          <article class="service-card reveal">
+            <div class="service-icon"><i class="fa-solid fa-lightbulb"></i></div>
+            <span class="service-number">03</span>
+            <h3>User-Centered Solutions</h3>
+            <p>
+              I solve problems with empathy and attention to detail, creating robust interfaces that
+              feel intuitive, accessible, and reliable for real users.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="section-label">Portfolio</p>
+          <h2>Featured Projects</h2>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-image project-image-one">
+              <img
+                src="assets/images/project-aspire-hotel-slider2.jpeg"
+                alt="Interior room preview of The Aspire Hotel"
+                loading="lazy"
+                decoding="async"
+                width="1280"
+                height="960"
+              >
+            </div>
+            <div class="project-body">
+              <h3>The Aspire Hotel</h3>
+              <p>
+                The official website for The Aspire Hotel in Guwahati, showcasing luxurious modern
+                rooms, amenities, and a smooth booking-focused hospitality experience.
+              </p>
+              <div class="tech-tags">
+                <span>Hospitality</span>
+                <span>Hotel Website</span>
+                <span>Booking UX</span>
+              </div>
+              <div class="project-actions">
+                <a class="btn btn-primary" href="https://theaspirehotel.com/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-image project-image-two">
+              <img
+                src="assets/images/project-aaron-holmes.jpeg"
+                alt="Luxury residential property preview for Aaron Holmes Residential"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="796"
+              >
+            </div>
+            <div class="project-body">
+              <h3>Aaron Holmes Residential</h3>
+              <p>
+                A luxury real estate platform for London and UK property experts with dynamic
+                listings, advanced search filters, and market intelligence reports.
+              </p>
+              <div class="tech-tags">
+                <span>PHP</span>
+                <span>UI/UX</span>
+                <span>Real Estate Tech</span>
+              </div>
+              <div class="project-actions">
+                <a class="btn btn-primary" href="https://aaron-holmes.com/design/index.php?page=home" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-image project-image-three">
+              <img
+                src="assets/images/project-yumly-card.webp"
+                alt="Recipe app preview for Yumly"
+                loading="lazy"
+                decoding="async"
+                width="1200"
+                height="720"
+              >
+            </div>
+            <div class="project-body">
+              <h3>Yumly - Recipes &amp; Meal Planner</h3>
+              <p>
+                A recipe and meal-planning app that helps users discover, save, and cook delicious
+                meals with ingredient search, step-by-step instructions, and personalized meal
+                plans.
+              </p>
+              <div class="tech-tags">
+                <span>Android</span>
+                <span>Recipes</span>
+                <span>Meal Planning</span>
+              </div>
+              <div class="project-actions">
+                <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.aik.yumly" target="_blank" rel="noopener noreferrer">Live Demo</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <div class="avatar-card">
+            <div class="avatar-ring">
+              <div class="avatar-placeholder">
+                <img
+                  src="assets/images/profile-optimized.webp"
+                  alt="Portrait of Asif Imran Khan"
+                  class="avatar-image"
+                  width="880"
+                  height="880"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </div>
+            </div>
+            <div class="avatar-meta">
+              <p class="section-label">Available for freelance</p>
+              <h3>Asif Imran Khan</h3>
+              <p>Front-End Developer at AIK Studio focused on accessible digital experiences.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-content reveal">
+          <div class="section-heading align-left">
+            <p class="section-label">About Me</p>
+            <h2>Building digital experiences with precision and empathy.</h2>
           </div>
 
-          <ul class="ml-1 mt-8 flex items-center" aria-label="Social media">
-            <li class="mr-5 text-xs">
-              <a
-                class="block hover:text-slate-200"
-                href="https://github.com/techyaik"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span class="sr-only">GitHub</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  class="h-6 w-6"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-            <li class="mr-5 text-xs">
-              <a
-                class="block hover:text-slate-200"
-                href="https://www.linkedin.com/in/asif-imran-khan-50b170218"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span class="sr-only">LinkedIn</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="h-6 w-6"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
-                  ></path>
-                </svg>
-              </a>
-            </li>
-          </ul>
-        </header>
+          <p class="about-text">
+            My journey did not start behind a screen, but at the bedside. As a Registered Nurse, I
+            learned to navigate high-pressure environments where precision and empathy are
+            everything. In 2025, I decided to channel that same dedication into building digital
+            solutions. Today, I build user-centric applications and accessible front-end experiences
+            with the same care and attention to detail I once used in healthcare.
+          </p>
 
-        <!-- Right Column / Content -->
-        <main id="content" class="pt-24 lg:w-1/2 lg:py-24">
-          <!-- About -->
-          <section
-            id="about"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-            aria-label="About me"
-          >
-            <div
-              class="sticky top-0 z-20 -mx-6 mb-4 w-full bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:hidden"
-            >
-              <h2
-                class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only"
-              >
-                About
-              </h2>
-            </div>
-            <div id="about-content">
-              <!-- Dynamically Rendered -->
-            </div>
-          </section>
+          <div class="skills">
+            <span>React</span>
+            <span>JavaScript</span>
+            <span>PHP</span>
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>Tailwind</span>
+            <span>HTTPS</span>
+            <span>Accessibility</span>
+            <span>Medical Coding</span>
+            <span>Critical Care</span>
+          </div>
 
-          <!-- Experience -->
-          <section
-            id="experience"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-            aria-label="Work experience"
-          >
-            <div
-              class="sticky top-0 z-20 -mx-6 mb-4 w-full bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:hidden"
-            >
-              <h2
-                class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only"
-              >
-                Experience
-              </h2>
+          <div class="skill-progress-list">
+            <div class="skill-progress">
+              <div class="skill-progress-top">
+                <span>Front-End Development</span>
+                <span>95%</span>
+              </div>
+              <div class="progress-track"><span style="width: 95%"></span></div>
             </div>
-            <div id="experience-list">
-              <!-- Dynamically Rendered -->
+            <div class="skill-progress">
+              <div class="skill-progress-top">
+                <span>Healthcare Administration</span>
+                <span>92%</span>
+              </div>
+              <div class="progress-track"><span style="width: 92%"></span></div>
             </div>
-            <div class="mt-12">
-              <a
-                class="inline-flex items-center font-medium leading-tight text-slate-200 group"
-                aria-label="View Full Résumé"
-                href="resume.html"
-              >
-                <span>View Full Résumé</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  class="ml-1 inline-block h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-focus-visible:-translate-y-1 group-focus-visible:translate-x-1 motion-reduce:transition-none"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </a>
+            <div class="skill-progress">
+              <div class="skill-progress-top">
+                <span>User-Centered Problem Solving</span>
+                <span>90%</span>
+              </div>
+              <div class="progress-track"><span style="width: 90%"></span></div>
             </div>
-          </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Projects -->
-          <section
-            id="projects"
-            class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-            aria-label="Selected projects"
-          >
-            <div
-              class="sticky top-0 z-20 -mx-6 mb-4 w-full bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:hidden"
-            >
-              <h2
-                class="text-sm font-bold uppercase tracking-widest text-slate-200 lg:sr-only"
-              >
-                Projects
-              </h2>
-            </div>
-            <div id="projects-list">
-              <!-- Dynamically Rendered -->
-            </div>
-            <div class="mt-12">
-              <a
-                class="inline-flex items-center font-medium leading-tight text-slate-200 group"
-                aria-label="View Full Project Archive"
-                href="#"
-              >
-                <span>View Full Project Archive</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  class="ml-1 inline-block h-4 w-4 shrink-0 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-focus-visible:-translate-y-1 group-focus-visible:translate-x-1 motion-reduce:transition-none"
-                  aria-hidden="true"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </section>
+    <section class="contact section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-content reveal">
+          <div class="section-heading align-left">
+            <p class="section-label">Contact Me</p>
+            <h2>Let’s build something impactful together.</h2>
+          </div>
 
-          <!-- Footer -->
-          <footer class="max-w-md pb-16 text-sm text-slate-500 sm:pb-0">
-            <p>
-              Loosely designed in
-              <a
-                href="https://www.figma.com/"
-                class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
-                >Figma</a
-              >
-              and coded in
-              <a
-                href="https://code.visualstudio.com/"
-                class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
-                >Visual Studio Code</a
-              >. Built with
-              <a
-                href="https://developer.mozilla.org/en-US/docs/Web/HTML"
-                class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
-                >Vanilla HTML/JS</a
-              >
-              and
-              <a
-                href="https://developer.mozilla.org/en-US/docs/Web/CSS"
-                class="font-medium text-slate-400 hover:text-teal-300 focus-visible:text-teal-300"
-                >Custom CSS</a
-              >.
-            </p>
-          </footer>
-        </main>
+          <p class="contact-text">
+            If you need a responsive front-end build, a polished interface, or a thoughtful digital
+            solution shaped by real-world precision, send a message and let’s connect.
+          </p>
+
+          <div class="contact-info">
+            <div>
+              <span>Email</span>
+              <a href="mailto:asif.imran.dev@gmail.com">asif.imran.dev@gmail.com</a>
+            </div>
+            <div>
+              <span>Location</span>
+              <p>Bangalore, Karnataka, India</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap reveal">
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name">
+              <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="asif.imran.dev@gmail.com">
+              <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell me about your project"></textarea>
+              <small class="error-message"></small>
+            </div>
+
+            <button class="btn btn-primary submit-btn" type="submit">Send Message</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 Asif Imran Khan. All rights reserved.</p>
+      <div class="social-links footer-socials" aria-label="Footer social media links">
+        <a href="https://github.com/techyaik" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="mailto:asif.imran.dev@gmail.com" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/asif-imran-khan-50b170218" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="https://x.com/asifikhandev?s=11" target="_blank" rel="noopener noreferrer" aria-label="Twitter or X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
       </div>
     </div>
-  </body>
+  </footer>
+</body>
 </html>
