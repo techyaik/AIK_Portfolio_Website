@@ -3,11 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Resume of Asif Imran Khan, Front-End Developer with healthcare and medical coding experience."
+    >
     <title>Resume | Asif Imran Khan</title>
+    <link
+        rel="icon"
+        href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="%23050505"/><text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="800" fill="%2300d6c9">A</text></svg>'
+    >
+    <script>
+        (() => {
+            const storageKey = "theme-preference";
+            const root = document.documentElement;
+            const media = window.matchMedia("(prefers-color-scheme: dark)");
+            const saved = localStorage.getItem(storageKey) || "system";
+            const resolved = saved === "system" ? (media.matches ? "dark" : "light") : saved;
+            root.dataset.themePreference = saved;
+            root.dataset.theme = resolved;
+            root.style.colorScheme = resolved;
+        })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
+        :root[data-theme="light"] { color-scheme: light; }
+        :root[data-theme="dark"] { color-scheme: dark; }
+        html[data-theme="light"] body {
+            background: #eff8f6 !important;
+            color: #475569 !important;
+        }
+        html[data-theme="light"] .content-box {
+            background: #ffffff !important;
+            border-color: #dbe7e4 !important;
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08) !important;
+        }
+        html[data-theme="light"] h1,
+        html[data-theme="light"] h4,
+        html[data-theme="light"] p.text-white {
+            color: #0f172a !important;
+        }
+        html[data-theme="light"] h3,
+        html[data-theme="light"] h2,
+        html[data-theme="light"] .accent-text,
+        html[data-theme="light"] .text-teal-300 {
+            color: #0f9488 !important;
+        }
+        html[data-theme="light"] .border-slate-800 {
+            border-color: #dbe7e4 !important;
+        }
+        html[data-theme="light"] .text-slate-500 {
+            color: #64748b !important;
+        }
+        html[data-theme="light"] .text-slate-400,
+        html[data-theme="light"] .text-slate-300 {
+            color: #475569 !important;
+        }
+        html[data-theme="light"] .bg-slate-800 {
+            background: #e2e8f0 !important;
+        }
+        html[data-theme="light"] .bg-teal-300\/10 {
+            background: rgba(15, 148, 136, 0.1) !important;
+        }
+        html[data-theme="light"] .no-print a:hover,
+        html[data-theme="light"] .no-print button:hover {
+            filter: brightness(0.96);
+        }
         @media print {
             .no-print { display: none; }
             body { background: white !important; color: black !important; }
@@ -28,13 +90,13 @@
                     Back to Portfolio
                 </a>
             </div>
-            <button onclick="window.print()" class="w-full sm:w-auto bg-teal-300 text-slate-900 px-6 py-2 rounded-full font-bold hover:bg-white transition">
+            <button type="button" onclick="window.print()" class="w-full sm:w-auto bg-teal-300 text-slate-900 px-6 py-2 rounded-full font-bold hover:bg-white transition">
                 Download PDF
             </button>
         </div>
 
         <!-- Resume Content -->
-        <div class="bg-slate-900 p-5 sm:p-8 md:p-12 rounded-2xl shadow-2xl border border-slate-800 content-box">
+        <div class="bg-slate-900 data-[theme=light]:bg-white p-5 sm:p-8 md:p-12 rounded-2xl shadow-2xl data-[theme=light]:shadow-xl border border-slate-800 data-[theme=light]:border-slate-200 content-box">
             <!-- Name and Title -->
             <header class="mb-10 sm:mb-12 border-b border-slate-800 pb-8">
                 <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 break-words">Asif Imran Khan</h1>

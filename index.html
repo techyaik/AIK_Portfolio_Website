@@ -8,6 +8,10 @@
     content="AIK — Asif Imran Khan. Front-End Developer. Crafting accessible, pixel-perfect digital experiences."
   >
   <title>Asif Imran Khan | Front-End Developer</title>
+  <link
+    rel="icon"
+    href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="18" fill="%23050505"/><text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="800" fill="%2300d6c9">A</text></svg>'
+  >
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -21,6 +25,18 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   >
+  <script>
+    (() => {
+      const storageKey = "theme-preference";
+      const root = document.documentElement;
+      const media = window.matchMedia("(prefers-color-scheme: dark)");
+      const saved = localStorage.getItem(storageKey) || "system";
+      const resolved = saved === "system" ? (media.matches ? "dark" : "light") : saved;
+      root.dataset.themePreference = saved;
+      root.dataset.theme = resolved;
+      root.style.colorScheme = resolved;
+    })();
+  </script>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/script.js" defer></script>
 </head>
@@ -31,34 +47,74 @@
       <nav class="navbar" aria-label="Primary navigation">
         <a class="logo" href="#home" aria-label="AIK home">AIK.</a>
 
-        <button
-          class="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="nav-menu"
-          aria-label="Open navigation menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
         <div class="nav-panel" id="nav-menu" aria-hidden="true">
           <ul class="nav-links">
-            <li><a class="nav-link active" href="#home">Home</a></li>
-            <li><a class="nav-link" href="#projects">Projects</a></li>
-            <li><a class="nav-link" href="#about">About me</a></li>
-            <li><a class="nav-link" href="#contact">Contact me</a></li>
+            <li>
+              <a class="nav-link active" href="#home">
+                <i class="nav-link-icon fa-solid fa-house" aria-hidden="true"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="#projects">
+                <i class="nav-link-icon fa-solid fa-briefcase" aria-hidden="true"></i>
+                <span>Projects</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="#about">
+                <i class="nav-link-icon fa-regular fa-user" aria-hidden="true"></i>
+                <span>About me</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="#contact">
+                <i class="nav-link-icon fa-regular fa-envelope" aria-hidden="true"></i>
+                <span>Contact me</span>
+              </a>
+            </li>
           </ul>
 
-          <a class="resume-btn" href="resume.html">
-            <i class="fa-solid fa-briefcase"></i>
-            <span>View Resume</span>
-          </a>
+          <div class="header-actions">
+            <a class="resume-btn" href="resume.html">
+              <i class="fa-solid fa-briefcase"></i>
+              <span>View Resume</span>
+            </a>
+
+            <div class="theme-switcher" aria-label="Appearance settings" role="group">
+              <button class="theme-option" type="button" data-theme-option="light" aria-label="Light mode">
+                <i class="fa-regular fa-sun"></i>
+                <span>Light</span>
+              </button>
+              <button class="theme-option" type="button" data-theme-option="system" aria-label="System mode">
+                <i class="fa-solid fa-desktop"></i>
+                <span>System</span>
+              </button>
+              <button class="theme-option" type="button" data-theme-option="dark" aria-label="Dark mode">
+                <i class="fa-regular fa-moon"></i>
+                <span>Dark</span>
+              </button>
+            </div>
+          </div>
         </div>
       </nav>
     </div>
   </header>
+
+  <div class="mobile-theme-fab" aria-label="Appearance settings" role="group">
+    <button class="theme-option" type="button" data-theme-option="light" aria-label="Light mode">
+      <i class="fa-regular fa-sun"></i>
+      <span>Light</span>
+    </button>
+    <button class="theme-option" type="button" data-theme-option="system" aria-label="System mode">
+      <i class="fa-solid fa-desktop"></i>
+      <span>System</span>
+    </button>
+    <button class="theme-option" type="button" data-theme-option="dark" aria-label="Dark mode">
+      <i class="fa-regular fa-moon"></i>
+      <span>Dark</span>
+    </button>
+  </div>
 
   <main id="main-content">
     <section class="hero section" id="home">
@@ -346,19 +402,19 @@
           <form class="contact-form" id="contact-form" novalidate>
             <div class="form-group">
               <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name">
+              <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
               <small class="error-message"></small>
             </div>
 
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="asif.imran.dev@gmail.com">
+              <input id="email" name="email" type="email" placeholder="asif.imran.dev@gmail.com" autocomplete="email" inputmode="email" required>
               <small class="error-message"></small>
             </div>
 
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" name="message" rows="6" placeholder="Tell me about your project"></textarea>
+              <textarea id="message" name="message" rows="6" placeholder="Tell me about your project" required></textarea>
               <small class="error-message"></small>
             </div>
 

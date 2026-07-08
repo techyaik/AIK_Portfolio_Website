@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const body = document.body;
-  const menuToggle = document.querySelector(".menu-toggle");
+  const root = document.documentElement;
+  const themeOptions = document.querySelectorAll("[data-theme-option]");
   const navPanel = document.querySelector(".nav-panel");
   const siteHeader = document.querySelector(".site-header");
   const navLinks = document.querySelectorAll(".nav-link");
@@ -8,81 +8,61 @@ document.addEventListener("DOMContentLoaded", () => {
   const revealItems = document.querySelectorAll(".reveal");
   const contactForm = document.getElementById("contact-form");
   const formStatus = document.getElementById("form-status");
-  const syncNavAccessibility = () => {
-    if (!navPanel) {
-      return;
-    }
-
-    const isDesktop = window.innerWidth > 820;
-    const isMobileBottomNav = window.innerWidth <= 820;
-    const isOpen = navPanel.classList.contains("is-open");
-    navPanel.setAttribute("aria-hidden", String(!isDesktop && !isOpen && !isMobileBottomNav));
+  const themeStorageKey = "theme-preference";
+  const themeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+  const getSavedThemePreference = () => localStorage.getItem(themeStorageKey) || "system";
+  const getResolvedTheme = (preference) =>
+    preference === "system" ? (themeMedia.matches ? "dark" : "light") : preference;
+  const applyTheme = (preference) => {
+    const resolvedTheme = getResolvedTheme(preference);
+    root.dataset.themePreference = preference;
+    root.dataset.theme = resolvedTheme;
+    root.style.colorScheme = resolvedTheme;
   };
-
-  const closeMenu = () => {
-    if (!menuToggle || !navPanel) {
-      return;
-    }
-
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Open navigation menu");
-    navPanel.classList.remove("is-open");
-    body.classList.remove("menu-open");
-    syncNavAccessibility();
-  };
-
-  if (menuToggle && navPanel) {
-    menuToggle.addEventListener("click", () => {
-      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
-
-      menuToggle.setAttribute("aria-expanded", String(!isOpen));
-      menuToggle.setAttribute(
-        "aria-label",
-        isOpen ? "Open navigation menu" : "Close navigation menu"
-      );
-      navPanel.classList.toggle("is-open");
-      body.classList.toggle("menu-open");
-      syncNavAccessibility();
-
-      if (!isOpen) {
-        const firstNavLink = navPanel.querySelector(".nav-link");
-        window.setTimeout(() => firstNavLink?.focus(), 140);
-      }
+  const syncThemeSwitcher = () => {
+    const activePreference = root.dataset.themePreference || getSavedThemePreference();
+    themeOptions.forEach((option) => {
+      const isActive = option.dataset.themeOption === activePreference;
+      option.setAttribute("aria-pressed", String(isActive));
     });
+  };
+
+  applyTheme(getSavedThemePreference());
+  syncThemeSwitcher();
+
+  themeOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      const preference = option.dataset.themeOption;
+      localStorage.setItem(themeStorageKey, preference);
+      applyTheme(preference);
+      syncThemeSwitcher();
+    });
+  });
+
+  const onSystemThemeChange = () => {
+    if (getSavedThemePreference() === "system") {
+      applyTheme("system");
+      syncThemeSwitcher();
+    }
+  };
+
+  if (typeof themeMedia.addEventListener === "function") {
+    themeMedia.addEventListener("change", onSystemThemeChange);
+  } else if (typeof themeMedia.addListener === "function") {
+    themeMedia.addListener(onSystemThemeChange);
   }
 
-  syncNavAccessibility();
-
-  document.addEventListener("click", (event) => {
-    if (
-      window.innerWidth <= 820 &&
-      menuToggle &&
-      navPanel &&
-      navPanel.classList.contains("is-open") &&
-      !navPanel.contains(event.target) &&
-      !menuToggle.contains(event.target)
-    ) {
-      closeMenu();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && navPanel?.classList.contains("is-open")) {
-      closeMenu();
-      menuToggle?.focus();
-    }
-  });
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (window.innerWidth <= 820) {
-        closeMenu();
-      }
-    });
-  });
+  if (navPanel) {
+    navPanel.setAttribute("aria-hidden", "false");
+  }
 
   const updateActiveLink = () => {
-    const headerOffset = siteHeader ? siteHeader.offsetHeight + 48 : 140;
+    const isMobileNav = window.innerWidth <= 820;
+    const headerOffset = isMobileNav
+      ? Math.max(window.innerHeight * 0.3, 180)
+      : siteHeader
+        ? siteHeader.offsetHeight + 48
+        : 140;
     const scrollPosition = window.scrollY + headerOffset;
     let currentId = "home";
 
@@ -109,11 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateActiveLink();
   window.addEventListener("scroll", updateActiveLink, { passive: true });
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 820) {
-      closeMenu();
-    }
-
-    syncNavAccessibility();
+    updateActiveLink();
   });
 
   if ("IntersectionObserver" in window) {
@@ -141,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorMessage = formGroup.querySelector(".error-message");
 
     formGroup.classList.add("error");
+    field.setAttribute("aria-invalid", "true");
     errorMessage.textContent = message;
   };
 
@@ -149,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorMessage = formGroup.querySelector(".error-message");
 
     formGroup.classList.remove("error");
+    field.setAttribute("aria-invalid", "false");
     errorMessage.textContent = "";
   };
 
@@ -158,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fields = [...contactForm.querySelectorAll("input, textarea")];
 
     fields.forEach((field) => {
+      field.setAttribute("aria-invalid", "false");
       field.addEventListener("input", () => clearError(field));
     });
 
